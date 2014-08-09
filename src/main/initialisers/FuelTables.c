@@ -63,6 +63,9 @@ const volatile mainTable VETableMainFlashV FUELTABLESD = {
 #elif CONFIG == SNOTROCKET_ID
 	RPMLength:  12,
 	LoadLength: 8,
+#elif CONFIG == WHIZZO944_ID
+	RPMLength:  24,
+	LoadLength: 19,	
 #else
 	RPMLength:  16,
 	LoadLength: 16,

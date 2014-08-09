@@ -73,6 +73,9 @@ const volatile fixedConfig1 fixedConfigs1 FIXEDCONF1 = {
 #elif CONFIG == SCAVENGER_ID
 		perCylinderVolume:  CYLINDER_VOLUME(399.25),
 		injectorFlow:       CC_PER_MINUTE(540),
+#elif CONFIG == WHIZZO944_ID
+		perCylinderVolume:  CYLINDER_VOLUME(99.75)
+		injectorFlow:		CC_PER_MINUTE(224)
 #else
 		perCylinderVolume:  CYLINDER_VOLUME(500),
 		injectorFlow:       CC_PER_MINUTE(550),
@@ -195,6 +198,14 @@ const volatile fixedConfig1 fixedConfigs1 FIXEDCONF1 = {
 		decoderEngineOffset:      ANGLE(128), // Hentai initial setup value, will change a bit
 		numberOfConfiguredOutputEvents:              8, // See two lines above
 		numberOfInjectionsPerEngineCycle:            2  // Semi-sequential, for now.
+		
+#elif CONFIG == WHIZZO944_ID // Whizzo944's Honda VFR400R NC30 bike
+		anglesOfTDC: {ANGLE(0), ANGLE(90), ANGLE(360), ANGLE(450), ANGLE(0), ANGLE(90), ANGLE(360), ANGLE(450)},
+		outputEventPinNumbers:       {0,1,2,3,4,5,4,5}, // COP and semi-sequential
+		schedulingConfigurationBits: {0,0,0,0,1,1,1,1}, // First four ignition, last four fuel
+		decoderEngineOffset:              ANGLE(70.00), // FE-DOHC, 4and1 CAS approximately centre
+		numberOfConfiguredOutputEvents:              8, // Migrated to new way
+		numberOfInjectionsPerEngineCycle:            2  // Used to be batch, dead time being wrong could have affected AFRs
 
 #else // Nothing scheduled by default, no sensible default for all possible vehicle setups.
 		anglesOfTDC:                            {}, // Depends on cylinder count and other variables
@@ -219,6 +230,9 @@ const volatile fixedConfig1 fixedConfigs1 FIXEDCONF1 = {
 #elif CONFIG == SCAVENGER_ID
 			disableThreshold:  RPM(7200),
 			reenableThreshold: RPM(7150)
+#elif CONFIG == WHIZZO944_ID
+			disableThreshold:  RPM(16000),
+			reenableThreshold: RPM(15500)			
 #else
 			disableThreshold:  RPM(5850),
 			reenableThreshold: RPM(5800)  // Come back on before ignition does
@@ -246,6 +260,9 @@ const volatile fixedConfig1 fixedConfigs1 FIXEDCONF1 = {
 #elif CONFIG == SCAVENGER_ID
 			disableThreshold:  RPM(7200),
 			reenableThreshold: RPM(7100)
+#elif CONFIG == WHIZZO944_ID
+			disableThreshold:  RPM(15000),
+			reenableThreshold: RPM(14500)			
 #else
 			disableThreshold:  RPM(5800),
 			reenableThreshold: RPM(5750)  // Come back on after injection does
@@ -253,7 +270,7 @@ const volatile fixedConfig1 fixedConfigs1 FIXEDCONF1 = {
 		},
 		OverBoost:{
 			disableThreshold:  KPA(250), // Cut close to std sensor max
-			reenableThreshold: KPA(105)  // Re enable when boost gone all together (Setting to anything at or below 100kPa can cause a dead engine)
+			reenableThreshold: KPA(120)  // Re enable when boost gone all together (Setting to anything at or below 100kPa can cause a dead engine)
 		},
 		cutsEnabled:{
 			InjectionRPM: 1,
@@ -316,7 +333,7 @@ const volatile fixedConfig1 fixedConfigs1 FIXEDCONF1 = {
 		numberConfigured: 2,
 		spare: 0
 	},
-	userTextField:  "Place your personal notes about whatever you like in here!"
+	userTextField:  "FixedConfig1.c file for Whizzo944's Honda VFR400R NC30"
 			" Don't hesitate to tell us a story about something interesting."
 			" Do keep in mind though that when you upload your settings file to "
 			"the forum this message WILL be visible to all and sundry, so don't "

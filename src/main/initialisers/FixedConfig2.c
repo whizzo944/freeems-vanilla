@@ -83,6 +83,9 @@ const volatile fixedConfig2 fixedConfigs2 FIXEDCONF2 = {
 #elif CONFIG == DEUCES10_ID
 		MAPMinimum:    GM1BarMin,
 		MAPRange:      GM1BarRange,
+#elif CONFIG == WHIZZO944_ID
+		MAPMinimum:    MPX6115AMin,
+		MAPRange:      MPX6115ARange,		
 #else
 		MAPMinimum:    MPX4250AMin,
 		MAPRange:      MPX4250ARange,
@@ -136,7 +139,7 @@ const volatile fixedConfig2 fixedConfigs2 FIXEDCONF2 = {
 	sensorSettings:{ // Warning, until the following mods are made to ADC use, setting this lower than your cranking rpm will result in a pulsing fuel pump.
 		readingTimeout: 500, /** Default to 0.5 of a second 120rpm for a 4 cylinder @todo TODO new method of ADC sampling, Always sample ADC async, If no sync, use async ADC readings, otherwise use synced. Do this with pointer to array set at beginning of math */
 		numberOfADCsToRead: 8,
-		fuelPumpPrimePeriod: 4 // Currently in seconds, may switch units later. Must be at least 1 and at most 60.
+		fuelPumpPrimePeriod: 2 // Currently in seconds, may switch units later. Must be at least 1 and at most 60.
 	},
 	algorithmSettings:{
 		loadType:      LOAD_MAP,
@@ -236,7 +239,7 @@ const volatile fixedConfig2 fixedConfigs2 FIXEDCONF2 = {
 #endif
 		missingToothTolerance: 2048 // 2048 is 50% right now...
 	},
-	userTextField2: "Place your personal notes about whatever you like in here!"
+	userTextField2: "FixedConfig2.c file for Whizzo944's Honda VFR400R"
 			" Don't hesitate to tell us a story about something interesting."
 			" Do keep in mind though that when you upload your settings file to "
 			"the forum this message WILL be visible to all and sundry, so don't "
